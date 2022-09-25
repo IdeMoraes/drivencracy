@@ -11,6 +11,7 @@ let db;
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 mongoClient.connect().then(()=>{
     db = mongoClient.db('drivencracy');
+    console.log(`Conectado ao Banco de Dados ${process.env.MONGO_URI}`)
 });
 
 app.get("/", (req,res)=>{
@@ -26,7 +27,7 @@ app.post("/teste", async (req, res) => {
         });
          res.send("Funcionou")
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
         return
     }
 });
