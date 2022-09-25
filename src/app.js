@@ -14,7 +14,7 @@ mongoClient.connect().then(()=>{
     console.log(`Conectado ao Banco de Dados ${process.env.MONGO_URI}`)
 });
 
-setInterval(function () { db.query('SELECT 1'); }, 5000);
+/* setInterval(function () { db.query('SELECT 1'); }, 5000); */
 
 app.get("/", (req,res)=>{
     console.log(process.env.MONGO_URI);
@@ -35,6 +35,5 @@ app.post("/teste", async (req, res) => {
 });
 
 app.listen(process.env.PORT,()=>{
-    console.log(`URI = ${process.env.MONGO_URI}`)
     console.log(`App listening on port ${process.env.PORT}`);
 });
