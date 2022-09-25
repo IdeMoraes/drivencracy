@@ -25,7 +25,7 @@ app.post("/teste", async (req, res) => {
         await db.collection("teste").insertOne({
             teste: "string de teste",
         });
-         res.send("Funcionou")
+        return res.send("Funcionou")
     } catch (error) {
         console.log(error.message);
         return
