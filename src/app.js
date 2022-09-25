@@ -8,7 +8,7 @@ app.use(cors());
 dotenv.config();
 
 app.get("/", (req,res)=>{
-    res.send('Olá.')
+    return res.send('Olá.')
 })
 
 app.post("/teste", async (req, res) => {
@@ -16,7 +16,7 @@ app.post("/teste", async (req, res) => {
         await db.collection("teste").insertOne({
             teste: "string de teste",
         });
-        return res.send("Funcionou")
+         res.send("Funcionou")
     } catch (error) {
         console.log("Erro no try")
         return
