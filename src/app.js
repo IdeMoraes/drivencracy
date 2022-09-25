@@ -8,7 +8,9 @@ app.use(cors());
 dotenv.config();
 
 app.get("/", (req,res)=>{
+    console.log(process.env.MONGO_URI);
     return res.send('Olá.')
+
 })
 
 app.post("/teste", async (req, res) => {
