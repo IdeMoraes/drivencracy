@@ -14,6 +14,8 @@ mongoClient.connect().then(()=>{
     console.log(`Conectado ao Banco de Dados ${process.env.MONGO_URI}`)
 });
 
+setInterval(function () { db.query('SELECT 1'); }, 5000);
+
 app.get("/", (req,res)=>{
     console.log(process.env.MONGO_URI);
     return res.send('Olá.')
