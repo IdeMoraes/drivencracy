@@ -14,7 +14,7 @@ const mongoClient = new MongoClient(process.env.MONGO_URI);
 mongoClient.connect().then(()=>{
     db = mongoClient.db('drivencracy');
     console.log(`Conectado ao Banco de Dados ${process.env.MONGO_URI}`)
-});
+}).catch((error)=>console.log(error.message));
 
 /* const enqueteModelo = {
 	_id: ObjectId("54759eb3c090d83494e2d222"),
@@ -46,16 +46,26 @@ app.post("/poll", async (req, res)=>{
         return res.sendStatus(422);
     }
     if(expireAt===""){
-        expireAt = dayjs().add(30, 'day').format('YYYY-MM-DD HH:mm')
+        expireAt = dayjs().add(30, 'day').format('YYYY-MM-DD HH:mm');
     }
     try {
         const poll = await db.collection("polls").insertOne({title, expireAt});
-        return res.status(201).send("Inseriu");
+        return res.status(201).send(poll);
     } catch (error) {
         console.log(error.message);
         return
     }
 });
+
+app.get("/poll", async (req, res)=>{
+    try {
+        const polls = await db.collection("polls").find().toArray();
+        return res.send(polls);
+    } catch (error) {
+        console.log(error.message);
+        return
+    }
+})
 
 app.post("/teste", async (req, res) => {
     try {
