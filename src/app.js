@@ -50,9 +50,10 @@ app.post("/poll", async (req, res)=>{
     }
     try {
         const poll = await db.collection("polls").insertOne({title, expireAt});
-        return res.status(201).send(poll);
+        return res.status(201).send("Inseriu");
     } catch (error) {
         console.log(error.message);
+        return
     }
 });
 
