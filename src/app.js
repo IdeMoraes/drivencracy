@@ -35,10 +35,8 @@ mongoClient.connect().then(()=>{
 }; */
 
 app.get("/", (req,res)=>{
-    console.log(process.env.MONGO_URI);
     return res.send('Olá.')
-
-})
+});
 
 app.post("/poll", async (req, res)=>{
     const {title, expireAt} = req.body;
@@ -56,7 +54,7 @@ app.post("/poll", async (req, res)=>{
     } catch (error) {
         console.log(error.message);
     }
-})
+});
 
 app.post("/teste", async (req, res) => {
     try {
